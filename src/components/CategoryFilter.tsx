@@ -31,6 +31,6 @@ const styles = StyleSheet.create({
     overflow: "hidden",
   },
   picker: {
-    height: 48,
+    height: 54,
   },
 });

@@ -1,11 +1,16 @@
+import { useQuery } from "@tanstack/react-query";
 import { productService } from "../services/product.service";
-import { useAsync } from "./useAsync";
 
 export function useCategories() {
-  const { data, isLoading, error, refetch } = useAsync(
-    () => productService.getCategories(),
-    []
-  );
+  const query = useQuery({
+    queryKey: ["categories"],
+    queryFn: () => productService.getCategories(),
+  });
 
-  return { categories: data ?? [], isLoading, error, refetch };
+  return {
+    categories: query.data ?? [],
+    isLoading: query.isLoading,
+    error: query.error instanceof Error ? query.error.message : null,
+    refetch: query.refetch,
+  };
 }

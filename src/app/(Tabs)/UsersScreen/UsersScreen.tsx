@@ -1,13 +1,13 @@
 import { useRouter } from "expo-router";
 import { useState } from "react";
 import { FlatList, StyleSheet, Text, View } from "react-native";
-import { ErrorMessage } from "../components/ErrorMessage";
-import { Loader } from "../components/Loader";
-import { SearchBar } from "../components/SearchBar";
-import { UserCard } from "../components/UserCard";
-import { useUsers } from "../hooks/useUsers";
-import { colors } from "../utils/theme";
-import { useDebounce } from "../utils/useDebounce";
+import { ErrorMessage } from "../../../components/ErrorMessage";
+import { Loader } from "../../../components/Loader";
+import { SearchBar } from "../../../components/SearchBar";
+import { UserCard } from "../../../components/UserCard";
+import { useUsers } from "../../../hooks/useUsers";
+import { colors } from "../../../utils/theme";
+import { useDebounce } from "../../../utils/useDebounce";
 
 export function UsersScreen() {
   const router = useRouter();
@@ -74,3 +74,5 @@ const styles = StyleSheet.create({
     marginTop: 40,
   },
 });
+
+export default UsersScreen;

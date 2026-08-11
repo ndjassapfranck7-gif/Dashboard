@@ -7,20 +7,20 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { CategoryFilter } from "../components/CategoryFilter";
-import { ErrorMessage } from "../components/ErrorMessage";
-import { Loader } from "../components/Loader";
-import { ProductCard } from "../components/ProductCard";
-import { SearchBar } from "../components/SearchBar";
-import { Toast } from "../components/Toast";
-import { useCategories } from "../hooks/useCategories";
-import { useProducts } from "../hooks/useProducts";
-import { useToast } from "../hooks/useToast";
-import type { Product } from "../schemas/product.schema";
-import { productService } from "../services/product.service";
-import { confirmAction } from "../utils/confirm";
-import { colors } from "../utils/theme";
-import { useDebounce } from "../utils/useDebounce";
+import { CategoryFilter } from "../../../components/CategoryFilter";
+import { ErrorMessage } from "../../../components/ErrorMessage";
+import { Loader } from "../../../components/Loader";
+import { ProductCard } from "../../../components/ProductCard";
+import { SearchBar } from "../../../components/SearchBar";
+import { Toast } from "../../../components/Toast";
+import { useCategories } from "../../../hooks/useCategories";
+import { useProductMutations } from "../../../hooks/useProductMutations";
+import { useProducts } from "../../../hooks/useProducts";
+import { useToast } from "../../../hooks/useToast";
+import type { Product } from "../../../types/product.types";
+import { confirmAction } from "../../../utils/confirm";
+import { colors } from "../../../utils/theme";
+import { useDebounce } from "../../../utils/useDebounce";
 
 export function ProductsScreen() {
   const router = useRouter();
@@ -28,12 +28,13 @@ export function ProductsScreen() {
   const [category, setCategory] = useState("");
   const debouncedSearch = useDebounce(search);
 
-  const { products, isLoading, error, refetch } = useProducts({
+  const { products, isLoading, error } = useProducts({
     search: debouncedSearch || undefined,
     category: category || undefined,
   });
   const { categories } = useCategories();
   const { toast, showToast, hideToast } = useToast();
+  const { deleteProduct } = useProductMutations();
 
   function handleDelete(product: Product) {
     confirmAction(
@@ -41,9 +42,8 @@ export function ProductsScreen() {
       `Voulez-vous vraiment supprimer "${product.title}" ?`,
       async () => {
         try {
-          await productService.remove(product.id);
+          await deleteProduct(product.id);
           showToast("Produit supprimé avec succès");
-          refetch();
         } catch {
           showToast("Suppression impossible", "error");
         }
@@ -151,3 +151,5 @@ const styles = StyleSheet.create({
     lineHeight: 30,
   },
 });
+
+export default ProductsScreen;

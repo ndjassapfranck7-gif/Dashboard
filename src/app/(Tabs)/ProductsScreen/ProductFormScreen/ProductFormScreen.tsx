@@ -1,15 +1,14 @@
 import { useLocalSearchParams, useRouter } from "expo-router";
-import { useState } from "react";
 import { StyleSheet, View } from "react-native";
-import { ErrorMessage } from "../components/ErrorMessage";
-import { Loader } from "../components/Loader";
-import { ProductForm } from "../components/ProductForm";
-import { Toast } from "../components/Toast";
-import { useProduct } from "../hooks/useProduct";
-import { useToast } from "../hooks/useToast";
-import { productService } from "../services/product.service";
-import type { CreateProductInput } from "../types/product.types";
-import { colors } from "../utils/theme";
+import { ErrorMessage } from "../../../../components/ErrorMessage";
+import { Loader } from "../../../../components/Loader";
+import { ProductForm } from "../../../../components/ProductForm";
+import { Toast } from "../../../../components/Toast";
+import { useProduct } from "../../../../hooks/useProduct";
+import { useProductMutations } from "../../../../hooks/useProductMutations";
+import { useToast } from "../../../../hooks/useToast";
+import type { CreateProductInput } from "../../../../schemas/product.schema";
+import { colors } from "../../../../utils/theme";
 
 type Params = {
   id?: string;
@@ -21,22 +20,21 @@ export function ProductFormScreen() {
   const editingId = params.id ? Number(params.id) : null;
   const { product, isLoading, error } = useProduct(editingId);
   const { toast, showToast, hideToast } = useToast();
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { createProduct, updateProduct, isCreating, isUpdating } =
+    useProductMutations();
+  const isSubmitting = isCreating || isUpdating;
 
   async function handleSubmit(values: CreateProductInput) {
-    setIsSubmitting(true);
     try {
       if (editingId) {
-        await productService.update(editingId, values);
+        await updateProduct({ id: editingId, input: values });
       } else {
-        await productService.create(values);
+        await createProduct(values);
       }
       showToast("Produit enregistré avec succès");
       router.back();
     } catch {
       showToast("Une erreur est survenue", "error");
-    } finally {
-      setIsSubmitting(false);
     }
   }
 
@@ -66,3 +64,5 @@ const styles = StyleSheet.create({
     padding: 16,
   },
 });
+
+export default ProductFormScreen;

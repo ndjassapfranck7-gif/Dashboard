@@ -1,42 +1,36 @@
 import { useLocalSearchParams } from "expo-router";
 import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
-import { ErrorMessage } from "../components/ErrorMessage";
-import { Loader } from "../components/Loader";
-import { useUser } from "../hooks/useUser";
-import { fullName } from "../utils/format";
-import { colors } from "../utils/theme";
+import { ErrorMessage } from "../../../../components/ErrorMessage";
+import { Loader } from "../../../../components/Loader";
+import { useProduct } from "../../../../hooks/useProduct";
+import { formatPrice } from "../../../../utils/format";
+import { colors } from "../../../../utils/theme";
 
 type Params = {
   id: string;
 };
 
-export function UserDetailScreen() {
+export function ProductDetailScreen() {
   const { id } = useLocalSearchParams<Params>();
-  const userId = Number(id);
-  const { user, isLoading, error } = useUser(userId);
+  const productId = Number(id);
+  const { product, isLoading, error } = useProduct(productId);
 
-  if (isLoading) return <Loader label="Chargement de l'utilisateur..." />;
+  if (isLoading) return <Loader label="Chargement du produit..." />;
   if (error) return <ErrorMessage message={error} />;
-  if (!user) return null;
+  if (!product) return null;
 
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
-      <View style={styles.headerRow}>
-        <Image source={{ uri: user.image }} style={styles.avatar} />
-        <Text style={styles.name}>
-          {fullName(user.firstName, user.lastName)}
-        </Text>
-      </View>
+      <Image source={{ uri: product.thumbnail }} style={styles.image} />
+      <Text style={styles.title}>{product.title}</Text>
+      <Text style={styles.description}>{product.description}</Text>
 
       <View style={styles.card}>
-        <Row label="Email" value={user.email} />
-        <Row label="Téléphone" value={user.phone} />
-        <Row
-          label="Adresse"
-          value={`${user.address.address}, ${user.address.city}, ${user.address.country}`}
-        />
-        <Row label="Société" value={user.company.name} />
-        <Row label="Poste" value={user.company.title} last />
+        <Row label="Catégorie" value={product.category} />
+        <Row label="Marque" value={product.brand} />
+        <Row label="Prix" value={formatPrice(product.price)} />
+        <Row label="Stock" value={String(product.stock)} />
+        <Row label="Note" value={`${product.rating} / 5`} last />
       </View>
     </ScrollView>
   );
@@ -54,9 +48,7 @@ function Row({
   return (
     <View style={[styles.row, !last && styles.rowBorder]}>
       <Text style={styles.rowLabel}>{label}</Text>
-      <Text style={styles.rowValue} numberOfLines={2}>
-        {value}
-      </Text>
+      <Text style={styles.rowValue}>{value}</Text>
     </View>
   );
 }
@@ -69,20 +61,23 @@ const styles = StyleSheet.create({
   content: {
     padding: 16,
   },
-  headerRow: {
-    alignItems: "center",
-    marginBottom: 20,
+  image: {
+    width: "100%",
+    height: 220,
+    borderRadius: 14,
+    marginBottom: 16,
   },
-  avatar: {
-    width: 88,
-    height: 88,
-    borderRadius: 44,
-    marginBottom: 10,
-  },
-  name: {
+  title: {
     fontSize: 20,
     fontWeight: "700",
     color: colors.text,
+  },
+  description: {
+    fontSize: 14,
+    color: colors.textMuted,
+    marginTop: 6,
+    marginBottom: 16,
+    lineHeight: 20,
   },
   card: {
     backgroundColor: colors.card,
@@ -95,7 +90,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     paddingVertical: 10,
-    gap: 12,
   },
   rowBorder: {
     borderBottomWidth: 1,
@@ -109,7 +103,8 @@ const styles = StyleSheet.create({
     color: colors.text,
     fontSize: 13,
     fontWeight: "600",
-    flexShrink: 1,
-    textAlign: "right",
+    textTransform: "capitalize",
   },
 });
+
+export default ProductDetailScreen;
