@@ -1,12 +1,6 @@
 import { useRouter } from "expo-router";
 import { useState } from "react";
-import {
-  FlatList,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { FlatList, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { CategoryFilter } from "../../../components/CategoryFilter";
 import { ErrorMessage } from "../../../components/ErrorMessage";
 import { Loader } from "../../../components/Loader";

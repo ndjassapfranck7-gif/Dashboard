@@ -35,7 +35,7 @@ export default function Layout() {
         <Tabs.Screen
           name="index"
           options={{
-            title: "Tableau de bord",
+            title: "Dashboard",
             tabBarLabel: "Tableau de bord",
             tabBarIcon: () => (
               <Text style={{ fontSize: 18 }}>{icons.index}</Text>
@@ -70,6 +70,20 @@ export default function Layout() {
             tabBarIcon: () => (
               <Text style={{ fontSize: 18 }}>{icons["products/form"]}</Text>
             ),
+          }}
+        />
+        <Tabs.Screen
+          name= "products/[id]"
+          options={{
+            title: "Details du produit",
+            href: null,
+          }}
+        />
+        <Tabs.Screen
+          name= "users/[id]"
+          options={{
+            title: "Details du produit",
+            href: null,
           }}
         />
       </Tabs>
