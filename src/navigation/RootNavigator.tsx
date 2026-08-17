@@ -21,7 +21,7 @@ export default function TabLayout() {
         tabBarItemStyle: { flex: 1 },
         tabBarLabelStyle: { textAlign: "center" },
         tabBarIcon: () => (
-          <Text style={{ fontSize: 18 }}>
+          <Text className="text-lg">
             {icons[route.name as keyof typeof icons]}
           </Text>
         ),

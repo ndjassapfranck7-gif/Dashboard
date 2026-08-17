@@ -38,7 +38,7 @@ export default function Layout() {
             title: "Dashboard",
             tabBarLabel: "Tableau de bord",
             tabBarIcon: () => (
-              <Text style={{ fontSize: 18 }}>{icons.index}</Text>
+              <Text className="text-lg">{icons.index}</Text>
             ),
           }}
         />
@@ -48,7 +48,7 @@ export default function Layout() {
             title: "Produit",
             tabBarLabel: "Produit",
             tabBarIcon: () => (
-              <Text style={{ fontSize: 18 }}>{icons.products}</Text>
+              <Text className="text-lg">{icons.products}</Text>
             ),
           }}
         />
@@ -58,7 +58,7 @@ export default function Layout() {
             title: "Utilisateur",
             tabBarLabel: "Utilisateur",
             tabBarIcon: () => (
-              <Text style={{ fontSize: 18 }}>{icons.users}</Text>
+              <Text className="text-lg">{icons.users}</Text>
             ),
           }}
         />
@@ -68,7 +68,7 @@ export default function Layout() {
             title: "Ajouter un produit",
             tabBarLabel: "Ajouter un produit",
             tabBarIcon: () => (
-              <Text style={{ fontSize: 18 }}>{icons["products/form"]}</Text>
+              <Text className="text-lg">{icons["products/form"]}</Text>
             ),
           }}
         />

@@ -1,25 +1,11 @@
-import { ActivityIndicator, StyleSheet, Text, View } from "react-native";
+import { nw as loadingNw } from "../store/loading.store.tsx";
+import { ActivityIndicator, Text, View } from "react-native";
 import { colors } from "../utils/theme";
-
 export function Loader({ label = "Chargement..." }: { label?: string }) {
   return (
-    <View style={styles.container}>
+    <View className={loadingNw.loader}>
       <ActivityIndicator size="small" color={colors.primary} />
-      <Text style={styles.label}>{label}</Text>
+      <Text className={loadingNw.loaderLabel}>{label}</Text>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-    gap: 10,
-    paddingVertical: 40,
-  },
-  label: {
-    color: colors.textMuted,
-    fontSize: 14,
-  },
-});

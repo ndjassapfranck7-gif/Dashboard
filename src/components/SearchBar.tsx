@@ -1,6 +1,6 @@
-import { StyleSheet, TextInput } from "react-native";
+import { nw as searchNw } from "../store/search.store.tsx";
+import { TextInput } from "react-native";
 import { colors } from "../utils/theme";
-
 interface SearchBarProps {
   value: string;
   onChange: (value: string) => void;
@@ -14,22 +14,9 @@ export function SearchBar({ value, onChange, placeholder }: SearchBarProps) {
       onChangeText={onChange}
       placeholder={placeholder ?? "Rechercher..."}
       placeholderTextColor={colors.textMuted}
-      style={styles.input}
+      className={searchNw.searchInput}
       autoCapitalize="none"
       autoCorrect={false}
     />
   );
 }
-
-const styles = StyleSheet.create({
-  input: {
-    borderWidth: 1,
-    borderColor: colors.border,
-    borderRadius: 10,
-    paddingHorizontal: 14,
-    paddingVertical: 10,
-    fontSize: 14,
-    backgroundColor: colors.card,
-    color: colors.text,
-  },
-});

@@ -1,8 +1,7 @@
+import { nw as searchNw } from "../store/search.store.tsx";
 import { Picker } from "@react-native-picker/picker";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import type { Category } from "../schemas/product.schema";
-import { colors } from "../utils/theme";
-
 interface CategoryFilterProps {
   categories: Category[];
   value: string;
@@ -11,8 +10,8 @@ interface CategoryFilterProps {
 
 export function CategoryFilter({ categories, value, onChange }: CategoryFilterProps) {
   return (
-    <View style={styles.wrapper}>
-      <Picker selectedValue={value} onValueChange={onChange} style={styles.picker}>
+    <View className={searchNw.filterWrapper}>
+      <Picker selectedValue={value} onValueChange={onChange} className={searchNw.filterPicker}>
         <Picker.Item label="Toutes les catégories" value="" />
         {categories.map((cat) => (
           <Picker.Item key={cat.slug} label={cat.name} value={cat.slug} />
@@ -21,16 +20,3 @@ export function CategoryFilter({ categories, value, onChange }: CategoryFilterPr
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  wrapper: {
-    borderWidth: 1,
-    borderColor: colors.border,
-    borderRadius: 10,
-    backgroundColor: colors.card,
-    overflow: "hidden",
-  },
-  picker: {
-    height: 54,
-  },
-});
