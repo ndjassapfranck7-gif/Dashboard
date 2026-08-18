@@ -1,4 +1,4 @@
-import { nw as productNw } from "../store/product.store.tsx";
+import { nw as productNw } from "../store/product.store";
 import { Image, Text, TouchableOpacity, View } from "react-native";
 import type { Product } from "../schemas/product.schema";
 import { formatPrice } from "../utils/format";

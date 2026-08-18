@@ -1,4 +1,4 @@
-import { nw as searchNw } from "../store/search.store.tsx";
+import { nw as searchNw } from "../store/search.store";
 import { Picker } from "@react-native-picker/picker";
 import { View } from "react-native";
 import type { Category } from "../schemas/product.schema";

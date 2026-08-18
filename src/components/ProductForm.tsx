@@ -1,4 +1,4 @@
-import { nw as formNw } from "../store/form.store.tsx";
+import { nw as formNw } from "../store/form.store";
 import { useState } from "react";
 import { ScrollView, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { createProductSchema } from "../schemas/product.schema";

@@ -1,4 +1,4 @@
-import { nw as searchNw } from "../store/search.store.tsx";
+import { nw as searchNw } from "../store/search.store";
 import { TextInput } from "react-native";
 import { colors } from "../utils/theme";
 interface SearchBarProps {

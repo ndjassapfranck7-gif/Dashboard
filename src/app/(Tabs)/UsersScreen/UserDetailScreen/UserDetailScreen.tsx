@@ -1,4 +1,5 @@
-import { nw as commonNw } from "../../../../store/common.store.tsx";import { nw as detailNw } from "../../../../store/detail.store.tsx";
+import { nw as commonNw } from "../../../../store/common.store";
+import { nw as detailNw } from "../../../../store/detail.store";
 import { useLocalSearchParams } from "expo-router";
 import { Image, ScrollView, Text, View } from "react-native";
 import { ErrorMessage } from "../../../../components/ErrorMessage";

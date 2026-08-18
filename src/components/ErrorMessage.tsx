@@ -1,4 +1,4 @@
-import { nw as loadingNw } from "../store/loading.store.tsx";
+import { nw as loadingNw } from "../store/loading.store";
 import { Text, View } from "react-native";
 export function ErrorMessage({ message }: { message: string }) {
   return (

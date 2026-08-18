@@ -1,9 +1,10 @@
-import { nw as dashboardNw } from "../store/dashboard.store.tsx";
+import { nw as dashboardNw } from "../store/dashboard.store";
 import { Text, View } from "react-native";
+import type { ReactNode } from "react";
 interface StatsCardProps {
   label: string;
   value: number;
-  icon: string;
+  icon: ReactNode;
   color: string;
 }
 
@@ -16,7 +17,7 @@ export function StatsCard({ label, value, icon, color }: StatsCardProps) {
   return (
     <View className={dashboardNw.statsCard}>
       <View className={iconStyle}>
-        <Text className={dashboardNw.statsIcon}>{icon}</Text>
+        <View className={dashboardNw.statsIcon}>{icon}</View>
       </View>
       <View>
         <Text className={dashboardNw.statsLabel}>{label}</Text>

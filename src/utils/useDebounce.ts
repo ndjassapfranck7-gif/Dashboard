@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 
-/** Retarde la mise à jour d'une valeur (utile pour la recherche en temps réel) */
 export function useDebounce<T>(value: T, delayMs = 400): T {
   const [debounced, setDebounced] = useState(value);
 

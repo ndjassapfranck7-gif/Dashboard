@@ -1,4 +1,4 @@
-import { nw as toastNw } from "../store/toast.store.tsx";
+import { nw as toastNw } from "../store/toast.store";
 import { useEffect, useRef } from "react";
 import { Animated, Text, TouchableOpacity } from "react-native";
 interface ToastProps {

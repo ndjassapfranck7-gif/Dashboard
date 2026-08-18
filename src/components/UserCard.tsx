@@ -1,4 +1,4 @@
-import { nw as userNw } from "../store/user.store.tsx";
+import { nw as userNw } from "../store/user.store";
 import { Image, Text, TouchableOpacity, View } from "react-native";
 import type { User } from "../schemas/user.schema";
 import { fullName } from "../utils/format";

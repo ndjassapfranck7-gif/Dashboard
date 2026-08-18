@@ -1,4 +1,4 @@
-import { nw as loadingNw } from "../store/loading.store.tsx";
+import { nw as loadingNw } from "../store/loading.store";
 import { ActivityIndicator, Text, View } from "react-native";
 import { colors } from "../utils/theme";
 export function Loader({ label = "Chargement..." }: { label?: string }) {

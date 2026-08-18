@@ -6,6 +6,9 @@ import { Loader } from "../../../components/Loader";
 import { StatsCard } from "../../../components/StatsCard";
 import { useDashboardStats } from "../../../hooks/useDashboardStats";
 import { colors } from "../../../utils/theme";
+import { FontAwesome, AntDesign, MaterialIcons } from "@expo/vector-icons";
+
+
 export function DashboardScreen() {
   const { stats, isLoading, error, refetch } = useDashboardStats();
 
@@ -20,9 +23,9 @@ export function DashboardScreen() {
       {error && <ErrorMessage message={error} />}
       {stats && (
         <View className={dashboardNw.dashboardGrid}>
-          <StatsCard label="Produits" value={stats.totalProducts} icon="📦" color={colors.primary} />
-          <StatsCard label="Utilisateurs" value={stats.totalUsers} icon="👤" color={colors.info} />
-          <StatsCard label="Catégories" value={stats.totalCategories} icon="🏷️" color={colors.success} />
+          <StatsCard label="Produits" value={stats.totalProducts} icon={<AntDesign name="product" size={24} color="black" />} color={colors.primary} />
+          <StatsCard label="Utilisateurs" value={stats.totalUsers} icon={<FontAwesome name="users" size={24} color="black" />} color={colors.info} />
+          <StatsCard label="Catégories" value={stats.totalCategories} icon={<MaterialIcons name="category" size={24} color="black" />} color={colors.success} />
         </View>
       )}
     </ScrollView>
