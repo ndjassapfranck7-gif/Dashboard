@@ -1,6 +1,7 @@
 import { QueryClientProvider } from "@tanstack/react-query";
-import { Tabs } from "expo-router";
+import { DarkTheme, Tabs } from "expo-router";
 import { AntDesign, Entypo, FontAwesome, MaterialIcons } from "@expo/vector-icons";
+import { StatusBar } from "expo-status-bar";
 
 import { queryClient } from "../../lib/Query.Client";
 import { colors } from "../../utils/theme";
@@ -8,14 +9,15 @@ import { colors } from "../../utils/theme";
 export default function Layout() {
   return (
     <QueryClientProvider client={queryClient}>
+      <StatusBar  style="dark"/>
       <Tabs
         screenOptions={{
           headerStyle: {
-            backgroundColor: colors.card,
+            backgroundColor: "#0ea5e9",
           },
-          headerTintColor: colors.text,
+          headerTintColor: colors.card,
           tabBarActiveTintColor: colors.primary,
-          tabBarInactiveTintColor: colors.textMuted,
+          tabBarInactiveTintColor: "black",
           tabBarStyle: {
             justifyContent: "center",
           },

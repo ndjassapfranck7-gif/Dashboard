@@ -1,4 +1,6 @@
-import { nw as commonNw } from "../../../store/common.store.tsx";import { nw as fabNw } from "../../../store/fab.store.tsx";import { nw as listNw } from "../../../store/list.store.tsx";
+import { nw as commonNw } from "../../../store/common.store";
+import { nw as fabNw } from "../../../store/fab.store";
+import { nw as listNw } from "../../../store/list.store";
 import { useRouter } from "expo-router";
 import { useState } from "react";
 import { FlatList, Text, TouchableOpacity, View } from "react-native";

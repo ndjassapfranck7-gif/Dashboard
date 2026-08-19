@@ -1,1 +1,1 @@
-export { DashboardScreen as default } from "./DashboardScreen/DashboardScreen";
+export { DashboardScreen as default } from "./DashboardScreen";
